@@ -1,30 +1,29 @@
-# prometheus
+## Prometheus
 Deploying prometheus on Kubernetes
-
-Download the prometheus client
+Download the prometheus client  
 `wget https://github.com/prometheus/prometheus/releases/download/v2.37.0/prometheus-2.37.0.linux-amd64.tar.gz`
 
-AlertManager
+AlertManager  
 `wget https://github.com/prometheus/alertmanager/releases/download/v0.24.0/alertmanager-0.24.0.linux-amd64.tar.gz`
 
-node_exporter
+node_exporter  
 `wget https://github.com/prometheus/node_exporter/releases/download/v1.3.1/node_exporter-1.3.1.linux-amd64.tar.gz`
 
-Extract the archive
+Extract the archive  
 `tar xvfz prometheus-2.37.0.linux-amd64.tar.gz`
 
-Navigate to the directory & edit the prometheus.yml file.
-To run prometheus:
+Navigate to the directory & edit the prometheus.yml file.  
+To run prometheus:  
 `./prometheus --config.file=prometheus.yml`
 
-Get the public IP/ DNS of the instance (`http://localhost:9090` if running locally) and on the browser:
+Get the public IP/ DNS of the instance (`http://localhost:9090` if running locally) and on the browser:  
 `3.91.195.193:9090`  
 `http://ec2-3-91-195-193.compute-1.amazonaws.com:9090`
 
-To view data on the expression browser, enter the command below to view how many times the metrics endpoint has been called:
+To view data on the expression browser, enter the command below to view how many times the metrics endpoint has been called:  
 `promhttp_metric_handler_requests_total`
 
-To view data through the graphing interface, select the "Graph" tab and execute the below command:
+To view data through the graphing interface, select the "Graph" tab and execute the below command:  
 `rate(promhttp_metric_handler_requests_total{code="200"}[1m])`
 
 ## Collecting Data From Clients
@@ -59,5 +58,5 @@ scrape_configs:
           group: 'canary'
 ```
 
-Restart prometheus and view this metric in the expression browser:
+Restart prometheus and view this metric in the expression browser:  
 `rpc_durations_seconds`
